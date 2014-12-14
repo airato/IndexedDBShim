@@ -5,14 +5,14 @@
         window.shimIndexedDB = idbModules.shimIndexedDB;
         if (window.shimIndexedDB) {
             window.shimIndexedDB.__useShim = function(){
-                window.indexedDB = idbModules.shimIndexedDB;
-                window.IDBDatabase = idbModules.IDBDatabase;
-                window.IDBTransaction = idbModules.IDBTransaction;
-                window.IDBCursor = idbModules.IDBCursor;
-                window.IDBKeyRange = idbModules.IDBKeyRange;
+                window._indexedDB = idbModules.shimIndexedDB;
+                window._IDBDatabase = idbModules.IDBDatabase;
+                window._IDBTransaction = idbModules.IDBTransaction;
+                window._IDBCursor = idbModules.IDBCursor;
+                window._IDBKeyRange = idbModules.IDBKeyRange;
                 // On some browsers the assignment fails, overwrite with the defineProperty method
                 if (window.indexedDB !== idbModules.shimIndexedDB && Object.defineProperty) {
-                    Object.defineProperty(window, 'indexedDB', {
+                    Object.defineProperty(window, '_indexedDB', {
                         value: idbModules.shimIndexedDB
                     });
                 }
